@@ -1,0 +1,126 @@
+
+this is for linux and type sudo only if u r ec2 user. if u r root user avoid sudo and type rest of the commands
+
+
+sudo yum update
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo \  
+
+
+https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+sudo yum upgrade 
+
+sudo yum install jenkins -y
+
+sudo systemctl enable jenkins
+
+sudo systemctl start jenkins 
+
+sudo systemctl status jenkins
+
+
+
+
+http://13.201.83.207:8080/
+
+
+inbound rules...........
+restart console
+unlock password
+getting started
+welcome to jenkins
+
+
+token
+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
+
+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
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Git') {
+            steps {
+                git 'https://github.com/Pravalikadev/jenkinslast_task.git'
+            }
+        }
+        stage('java'){
+            steps {
+                sh '''javac javafile.java
+java javafile.java'''
+            }
+        }
+        stage('shellscript'){
+            steps {
+                sh '''chmod 777 shellscriptfile.sh
+./shellscriptfile.sh
+chmod 777 shellscriptfile2.sh
+./shellscriptfile2.sh'''
+            }
+        }
+    }
+}
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Git') {
+            steps {
+                git 'https://github.com/Pravalikadev/jenkinslast_task.git'
+            }
+        }
+        stage('java'){
+            steps {
+                sh '''javac javafile.java
+java javafile.java'''
+            }
+        }
+        stage('Git'){
+            steps {
+                git branch: 'feature', url: 'https://github.com/Pravalikadev/jenkinslast_task.git'
+            }
+        }
+        stage('shellscript'){
+            steps {
+                sh '''chmod 777 shellscriptfile.sh
+./shellscriptfile.sh
+chmod 777 shellscriptfile2.sh
+./shellscriptfile2.sh'''
+            }
+        }
+    }
+}
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Pravalikadev/maven_git_jenkinsfile_task.git'
+            }
+        }
+        stage('maven'){
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
+
+
+
+
+
